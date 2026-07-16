@@ -25,9 +25,15 @@ Hedef klasörde bulunup kaynakta olmayan fazladan dosyalar **silinmez**. Araç t
 - `RotatingFileHandler` ile ayrı bir teknik log dosyası
 - Bir dosyada hata oluşsa bile kalan dosyalarla devam etme
 
-## Ekran Görüntüsü
+## Ekran Görüntüleri
 
-![FileSync koyu tema](docs/screenshots/main-dark.png)
+### Koyu tema
+
+![FileSync koyu tema](screenshots/main-dark.png)
+
+### Açık tema
+
+![FileSync açık tema](screenshots/main-light.png)
 
 ## Teknolojiler
 
