@@ -5,6 +5,11 @@ __pycache__/
 .venv/
 venv/
 
+# PyInstaller
+build/
+dist/
+*.spec
+
 # Uygulama çıktıları
 logs/*.log
 reports/*.txt

@@ -1,16 +1,28 @@
-"""Uygulama giriş noktası.
-
-Aşama 1-4 kapsamında UI henüz eklenmedi; şimdilik motorun bağımsız
-çalıştığını doğrulayan bir uyarı gösterir. UI aşamasında burada App
-başlatılacaktır.
-"""
+"""Uygulama giriş noktası."""
 
 from __future__ import annotations
 
+import ctypes
+import sys
+from pathlib import Path
+
+from app.ui import FileSyncApp
+
+
+def resource_path(relative_path: str) -> Path:
+    """Geliştirme ve PyInstaller ortamında kaynak dosyanın yolunu döndürür."""
+    base_path = Path(getattr(sys, "_MEIPASS", Path(__file__).resolve().parent))
+    return base_path / relative_path
+
 
 def main() -> None:
-    print("Dosya Senkronizasyon Aracı — motor katmanı hazır.")
-    print("Testler için: python -m pytest file_sync_app/tests")
+    ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(
+        "Mskarayel.FileSync.1.0"
+    )
+
+    app = FileSyncApp()
+    app.iconbitmap(str(resource_path("assets/icon.ico")))
+    app.mainloop()
 
 
 if __name__ == "__main__":
