@@ -18,6 +18,7 @@ import subprocess
 import sys
 import threading
 import tkinter as tk
+import webbrowser
 from collections.abc import Callable
 from datetime import datetime
 from logging.handlers import RotatingFileHandler
@@ -591,7 +592,7 @@ class FileSyncApp(ctk.CTk):
     def _open_settings_dialog(self) -> None:
         dialog = ctk.CTkToplevel(self)
         dialog.title("Ayarlar")
-        dialog.geometry("300x180")
+        dialog.geometry("300x230")
         dialog.transient(self)
         dialog.grab_set()
 
@@ -617,7 +618,49 @@ class FileSyncApp(ctk.CTk):
             dialog.destroy()
 
         ctk.CTkButton(dialog, text="Kaydet", width=90, command=apply_and_close,
-                      font=ctk.CTkFont(size=12)).pack(pady=16)
+                      font=ctk.CTkFont(size=12)).pack(pady=(16, 4))
+
+        ctk.CTkButton(
+            dialog, text="Hakkında", width=90, command=self._open_about_dialog,
+            fg_color="transparent", border_width=1, font=ctk.CTkFont(size=12),
+        ).pack(pady=(0, 12))
+
+    def _open_about_dialog(self) -> None:
+        dialog = ctk.CTkToplevel(self)
+        dialog.title("Hakkında")
+        dialog.geometry("320x380")
+        dialog.resizable(False, False)
+        dialog.transient(self)
+        dialog.grab_set()
+
+        # Uygulama ikonu (metin amblemi).
+        ctk.CTkLabel(dialog, text="⇄", font=ctk.CTkFont(size=44)).pack(pady=(20, 2))
+
+        ctk.CTkLabel(dialog, text="FileSync",
+                     font=ctk.CTkFont(size=18, weight="bold")).pack()
+        ctk.CTkLabel(dialog, text="Version 1.0",
+                     font=ctk.CTkFont(size=12)).pack(pady=(0, 10))
+
+        ctk.CTkLabel(dialog, text="Desktop File Synchronization Tool",
+                     font=ctk.CTkFont(size=12)).pack(pady=(0, 10))
+
+        ctk.CTkLabel(dialog, text="Python 3.14\nCustomTkinter",
+                     font=ctk.CTkFont(size=12), justify="center").pack(pady=(0, 10))
+
+        ctk.CTkLabel(dialog, text="Created by\nMustafa Samet Karayel",
+                     font=ctk.CTkFont(size=12), justify="center").pack(pady=(0, 10))
+
+        url = "https://github.com/Mskarayel/file-sync-app"
+        ctk.CTkLabel(dialog, text="GitHub:", font=ctk.CTkFont(size=12)).pack()
+        link = ctk.CTkLabel(
+            dialog, text=url, font=ctk.CTkFont(size=11, underline=True),
+            text_color="#1f6aa5", cursor="hand2",
+        )
+        link.pack(pady=(0, 12))
+        link.bind("<Button-1>", lambda _event: webbrowser.open(url))
+
+        ctk.CTkButton(dialog, text="Tamam", width=90, command=dialog.destroy,
+                      font=ctk.CTkFont(size=12)).pack(pady=(0, 16))
 
     # ---- Kapanış -----------------------------------------------------------
 
