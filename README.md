@@ -33,7 +33,7 @@ Hedef klasörde bulunup kaynakta olmayan fazladan dosyalar **silinmez**. Araç t
 
 ### Açık tema
 
-![FileSync açık tema](screenshots/main-ligth.png)
+![FileSync açık tema](screenshots/main-light.png)
 
 ## Teknolojiler
 
