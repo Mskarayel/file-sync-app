@@ -25,5 +25,28 @@ LOGS_DIR = BASE_DIR / "logs"
 REPORTS_DIR = BASE_DIR / "reports"
 SETTINGS_FILE = BASE_DIR / "settings.json"
 
+# Teknik uygulama günlüğü (kullanıcıya gösterilen işlem günlüğünden ayrıdır).
+LOG_FILE = LOGS_DIR / "app.log"
+LOG_MAX_BYTES = 1_000_000
+LOG_BACKUP_COUNT = 3
+
 # Son kullanılan klasörlerden kaç tanesi hatırlanacak.
 MAX_RECENT_FOLDERS = 5
+
+# Rapor dosyalarının ön eki ve tarih-saat biçimi.
+REPORT_FILENAME_PREFIX = "sync_report"
+TIMESTAMP_FORMAT = "%Y%m%d_%H%M%S"
+
+# Geçerli tema seçenekleri ve rapor formatları.
+THEME_OPTIONS = ("System", "Light", "Dark")
+REPORT_FORMAT_OPTIONS = ("txt", "json")
+
+# Ayar dosyası yoksa kullanılacak varsayılanlar.
+DEFAULT_SETTINGS: dict = {
+    "theme": "System",
+    "last_source": "",
+    "last_target": "",
+    "recent_sources": [],
+    "recent_targets": [],
+    "report_formats": ["txt", "json"],
+}

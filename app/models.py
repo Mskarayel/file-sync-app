@@ -74,6 +74,16 @@ class SyncSummary:
         return self._count(FileStatus.ERROR)
 
     @property
+    def duration_seconds(self) -> float:
+        """Başlangıç ile bitiş arasındaki toplam süre (saniye)."""
+        end = self.finished_at or datetime.now()
+        return max(0.0, (end - self.started_at).total_seconds())
+
+    @property
+    def total_count(self) -> int:
+        return len(self.comparisons)
+
+    @property
     def pending(self) -> list[FileComparison]:
         """Kopyalanması/güncellenmesi gereken dosyalar."""
         return [
